@@ -3,8 +3,6 @@ import os
 import requests
 from dotenv import load_dotenv
 
-# from dotenv import load_dotenv
-
 
 def main():
     print("Welcome to World CLI!")
