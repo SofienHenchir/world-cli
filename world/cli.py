@@ -1,5 +1,6 @@
 import os
 
+import pandas as pd
 import requests
 from dotenv import load_dotenv
 
@@ -16,4 +17,11 @@ def main():
     print(
         f"{user_name} is looking for informations aboutt {country_search}.. Fetching data .."
     )
-    print(response.json())
+    result = response.json()
+
+    if isinstance(result, list) or isinstance(result, dict):  # noqa: SIM101
+        df = pd.json_normalize(result)
+    else:
+        df = pd.DataFrame({"result": [result]})
+
+    print(df)
